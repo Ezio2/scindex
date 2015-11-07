@@ -41,13 +41,13 @@ class InvertIndex[A: TypeAlias.L, B: TypeAlias.L](directory: String, cacheSize: 
       v
   }
 
-  def set(key: A, value: B): Unit = {
+  def add(key: A, value: B): Unit = {
     timeWindowClient.set(key, value, System.currentTimeMillis)
     client.add(key, value)
     cache.putIfKeyPresent(key, value)
   }
 
-  def mset(items: Map[A, B]) = items.par.foreach(x => set(x._1, x._2))
+  def madd(items: Map[A, Vector[B]]) = items.par.foreach(x => x._2.foreach(add(x._1, _)))
 
   def remove(key: A, value: B) = {
     cache.remove(key, value)

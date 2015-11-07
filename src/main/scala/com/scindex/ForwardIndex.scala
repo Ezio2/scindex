@@ -41,19 +41,7 @@ class ForwardIndex[A: TypeAlias.L, B: TypeAlias.L](directory: String, cacheSize:
       v
   }
 
-  def mget(keys: Vector[A]): Map[A, Option[B]] = {
-    val items = keys.map {
-      case key => key -> cache.get(key)
-    }.toMap
-
-    val missKeys = items.filter(_._2.isEmpty).keys.toList
-
-    val missItems = client.mget(missKeys)
-    missItems.par.foreach {
-      case (k, v) => v.foreach(cache.put(k, _))
-    }
-    items ++ missItems
-  }
+  def mget(keys: Vector[A]): Map[A, Option[B]] = keys.par.map(k => k -> get(k)).seq.toMap
 
   def set(key: A, value: B): Unit = {
     timeWindowClient.set(key, value, System.currentTimeMillis)
