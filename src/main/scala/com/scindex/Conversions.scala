@@ -5,7 +5,7 @@ import com.google.common.primitives.Ints
 
 object Conversions {
 
-  //case class 在这里承担了相等判定，hashcode以成员变量为准
+  //case class 在这里承担了相等判定
   //long
   case class LongSerializable(v: Long) extends Serializable {
     override def dump: Array[Byte] = Longs.toByteArray(v)

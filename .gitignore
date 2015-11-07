@@ -9,3 +9,5 @@ target/
 !*.scala
 !*.sbt
 !*.conf
+!*.md
+Main.scala

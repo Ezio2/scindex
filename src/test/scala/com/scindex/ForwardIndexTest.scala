@@ -8,7 +8,7 @@ import java.nio.file.Files
 
 class ForwardIndexTest extends FunSuite {
   val tempDir = Files.createTempDirectory("forwardIndex")
-  val index = new ForwardIndex[Long, String](tempDir.toString, 1000, 3600)
+  val index = new ForwardIndex[Long, String](tempDir.toString, 1000, 3600000)
   test("basic operation"){
     val num = 100000
     val data1 = (1 to num).map(x => x.toLong -> x.toString).toMap
@@ -45,7 +45,7 @@ class ForwardIndexTest extends FunSuite {
 
   test("ttl") {
     val tempDir1 = Files.createTempDirectory("forwardIndex")
-    val index1 = new ForwardIndex[Long, String](tempDir1.toString, 1000, 2)
+    val index1 = new ForwardIndex[Long, String](tempDir1.toString, 1000, 2000)
 
     index1.set(1L, "test")
     Thread.sleep(3000)

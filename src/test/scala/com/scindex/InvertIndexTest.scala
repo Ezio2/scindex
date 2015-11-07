@@ -9,7 +9,7 @@ import scala.sys.process._
 
 class InvertIndexTest extends FunSuite {
   val tempDir = Files.createTempDirectory("invertIndex")
-  val index = new InvertIndex[String, Long](tempDir.toString, 1000, 3600)
+  val index = new InvertIndex[String, Long](tempDir.toString, 1000, 3600000)
   test("basic operation"){
     val num = 1000L
     val data1 = (1L to num).toVector
@@ -34,7 +34,7 @@ class InvertIndexTest extends FunSuite {
 
   test("ttl") {
     val tempDir1 = Files.createTempDirectory("forwardIndex")
-    val index1 = new InvertIndex[Long, String](tempDir1.toString, 1000, 2)
+    val index1 = new InvertIndex[Long, String](tempDir1.toString, 1000, 2000)
 
     index1.add(1L, "test")
     Thread.sleep(3000)
