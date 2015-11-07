@@ -20,7 +20,7 @@ scala convenient local forward index and invert index with ttl, support by LRU c
 
 ### with basic type
 
-<pre><code>
+```scala
 import Conversions._
 
 //ForwardIndex[YourType, YourType](directory, cacheSize, ttl(millis))
@@ -39,11 +39,11 @@ i.add("test", 10L)
 println(i.get("test")) //Vector(10, 100)
 println(i.get("test2")) //Vector()
 i.close()
-</code></pre>
+```
 
 ### custorm type
 
-refer to Conversions.scala, just implement your own Deserializable, Serializable, you can do without implicit
+refer to [Conversions.scala](https://github.com/dup8/scindex/blob/master/src/main/scala/com/scindex/Conversions.scala), just implement your own Deserializable, Serializable, you can do without implicit
 
 ## todo
 
