@@ -45,6 +45,12 @@ i.close()
 
 refer to [Conversions.scala](https://github.com/dup8/scindex/blob/master/src/main/scala/com/scindex/Conversions.scala), just implement your own Deserializable, Serializable, you can do without implicit
 
+## how to get jar
+in scindex root directory, run
+```shell
+sbt assembly
+```
+then you can get jar in target directory.you can import it in your own project like [this](http://stackoverflow.com/questions/18749406/how-can-i-add-unmanaged-jars-in-sbt-assembly-to-the-final-fat-jar)
 ## todo
 
 I will implement a simhash server with it.
